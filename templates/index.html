@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-image: url('static\\images\\bg4.jpg'); /* Replace 'background.jpg' with your image file path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: helvetica;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: rgb(200, 200, 200);
+            text-align: center;
+            font-family: 'Gill Sans';
+            font-size: 45px;
+        }
+
+        p {
+            color: whitesmoke;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+            /* border: 1px solid rgb(255, 252, 252); */
+        }
+
+        form {
+            width: 50%;
+            margin: auto;
+            text-align: center;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            font-size: 25px;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            background-color: rgb(158, 27, 198);
+            color: whitesmoke;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 36px;
+        }
+
+        input[type=submit]:hover {
+            background-color: whitesmoke;
+            color: palevioletred;
+        }
+    </style>
+</head>
+<body>
+    <h1>Myers-Briggs Personality Type Classification</h1>
+    <img src="{{url_for('static', filename='personalities.png')}}">
+    <p>Enter Username </p>
+    <form action="/" method="post">
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>

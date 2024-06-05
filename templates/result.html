@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Analysis Result</title>
+</head>
+<body>
+    <h1>Personality Analysis Result</h1>
+    <p>Twitter Handle: {{ username }}</p>
+    <p>Predicted MBTI Type: {{ mbti }}</p>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Analysis Result</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('static\\images\\bg.png');
+            background-size: fill;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #e4e4e4;
+            font-size: 60px;
+            margin: 20px 0;
+            
+        }
+        .content {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(190, 196, 202, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(250, 228, 228, 0.2);
+        }
+        .slideshow-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            height: 800px; /* Ensuring the height is set for centering */
+        }
+        .slides {
+            display: none;
+            width: 50%;
+            height: 800px;
+            object-fit: fill;
+            border-radius: 10px;
+        }
+        .active {
+            display: block;
+            transition: opacity 1s ease-in-out;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: auto;
+            padding: 16px;
+            color: #ecf0f1;
+            font-weight: bold;
+            font-size: 24px;
+            transition: background 0.6s ease;
+            border-radius: 3px;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev {
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        .prev:hover, .next:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        p {
+            font-size: 28px;
+            margin: 10px 0;
+        }
+        .twitter-handle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .twitter-handle i {
+            margin-right: 10px;
+            font-size: 28px;
+            color: #1DA1F2;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Personality Analysis Result</h1>
+    <div class="content">
+        <p class="twitter-handle"><i class="fab fa-twitter"></i>Twitter Handle: {{ username }}</p>
+        <p>MBTI Prediction : {{ mbti }}</p>
+        <div class="slideshow-container">
+            <img class="slides active" src="{{ url_for('static', filename=mbti + '.png') }}" alt="{{ mbti }}">
+            <img class="slides" src="{{ url_for('static', filename=mbti + '.jpg') }}" alt="{{ mbti }}">
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+        <p>-------</p>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slides');
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slides');
+            currentSlideIndex = (currentSlideIndex + direction + slides.length) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+
+        // Automatically change slides every 5 seconds
+        setInterval(() => changeSlide(1), 5000);
+    </script>
+</body>
+</html>
+
